@@ -1,6 +1,8 @@
 AssaultCube External Aimbot (C++)
 A lightweight, external aimbot for AssaultCube v1.2.0.2. This project was developed for educational purposes to demonstrate memory manipulation, 3D mathematical calculations, and process interaction using the Windows API.
 
+<img width="1783" height="1017" alt="image" src="https://github.com/user-attachments/assets/103e4913-dd28-409a-989d-c9d88d84a053" />
+
 🚀 Features
 External Execution: Runs as a separate process without injecting code.
 
