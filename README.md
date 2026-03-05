@@ -1,48 +1,72 @@
-AssaultCube External Aimbot (C++)
-A lightweight, external aimbot for AssaultCube v1.2.0.2. This project was developed for educational purposes to demonstrate memory manipulation, 3D mathematical calculations, and process interaction using the Windows API.
+# AssaultCube External Memory Controller
+> **A technical Study on Memory Manipulation, 3D Vector Math, and WinAPI Interfacing.**
 
-<img width="1783" height="1017" alt="image" src="https://github.com/user-attachments/assets/103e4913-dd28-409a-989d-c9d88d84a053" />
+[![Platform](https://img.shields.io/badge/Platform-Windows-blue.svg)](https://en.wikipedia.org/wiki/Microsoft_Windows)
+[![Language](https://img.shields.io/badge/Language-C%2B%2B17-orange.svg)](https://en.wikipedia.org/wiki/C%2B%2B17)
+[![Arch](https://img.shields.io/badge/Arch-x64-red.svg)](https://en.wikipedia.org/wiki/X86)
 
-🚀 Features
-External Execution: Runs as a separate process without injecting code.
+This project is a lightweight, external tool developed for **AssaultCube v1.2.0.2**. It serves as a practical application of Reverse Engineering concepts, focusing on how a separate process can synchronize with a game's memory space to perform real-time coordinate transformations.
 
-FOV-Based Targeting: Instead of just aiming at the closest enemy, it targets the enemy closest to your crosshair.
+---
 
-Smoothing System: Adjustable movement speed to make aiming look more natural.
+## 🚀 Key Technical Features
 
-Real-time Console Feedback: Shows current target ID and FOV distance.
+* **External Execution**: Operates entirely in User Mode (Ring 3) using `ReadProcessMemory` and `WriteProcessMemory`, ensuring no code injection is performed.
+* **FOV-Based Logic**: Implements angular distance calculations to prioritize targets closest to the player's crosshair rather than absolute 3D distance.
+* **Linear Interpolation (Smoothing)**: Features an adjustable smoothing factor to transition view angles gradually, mimicking human input.
+* **Real-time Telemetry**: Active console feedback showing Target Entity ID and FOV delta values.
 
-Keybinds:
 
-Right Mouse Button (Hold): Activate Aimbot.
 
-END Key: Close the script safely.
+## ⌨️ Controls & Interface
 
-🛠️ Requirements & Technical Details
-Architecture: x86 (AssaultCube is a 32-bit game).
+| Action | Input |
+| :--- | :--- |
+| **Activate Assist** | `Right Mouse Button (Hold)` |
+| **Panic/Safe Exit** | `END Key` |
 
-Compiler: Visual Studio with C++17 or higher.
+---
 
-Character Set: Must be configured to "Use Multi-Byte Character Set" in Project Properties.
+## 🛠️ Requirements & Environment
 
-📝 How to use
-Open AssaultCube.
+To compile and run this Proof of Concept, ensure your environment meets these specifications:
 
-Join a match and ensure you are alive before starting the script.
+* **Target Game**: AssaultCube v1.2.0.2
+* **Architecture**: Must be compiled as **x64** (64-bit).
+* **Compiler**: Visual Studio 2019/2022 (C++17 Standard).
+* **Character Set**: Must be set to `Use Multi-Byte Character Set` in Project Properties.
 
-Run the compiled .exe as Administrator at x64 > Release.
 
-Hold the Right Mouse Button to lock onto targets within the FOV range.
 
-🚧 Known Issues
-Startup Constraint: The script currently only initializes correctly if executed while the player is already alive in the match. If started at the main menu, memory addresses may not resolve properly.
+---
 
-🎯 Future Updates (To-do)
-Team Check: Implement a filter to prevent the aimbot from targeting allies.
+## 📝 Setup Instructions
 
-Auto-Initialization: Fix the bug to allow the script to be opened at any time (even if dead or in the menu).
+1.  Launch **AssaultCube**.
+2.  Join a match and ensure your character has **spawned (alive)**.
+3.  Run the compiled `.exe` (found in `x64 > Release`) as **Administrator**.
+4.  Hold the **Right Mouse Button** to engage the assist logic.
 
-No Recoil: Add a feature to eliminate weapon kickback.
+---
 
-⚠️ Disclaimer
-This project is for educational purposes only. Using cheats in multiplayer matches can lead to bans. I do not encourage or condone cheating in online games.
+## 🚧 Technical Constraints (Bug Report)
+
+* **Dynamic Pointer Resolution**: Currently, the script resolves base addresses and offsets at startup. Due to this, it must be launched while the player is alive in a match. Initialization at the main menu will result in null pointer references.
+
+---
+
+## 🎯 Development Roadmap (To-do)
+
+- [ ] **Team ID Filter**: Implement a team check to differentiate between allies and enemies.
+- [ ] **Persistence Fix**: Refactor initialization logic to allow software launch at any game state.
+- [ ] **Recoil Compensation**: Implement a module to counteract weapon kickback offsets.
+
+---
+
+## ⚠️ Educational Disclaimer
+
+This project is for **educational purposes only**. It was created to explore the internal workings of Windows processes and game engines. Using such tools in multiplayer environments is a violation of most Terms of Service and can result in permanent bans. **The author does not condone cheating in online gaming.**
+
+---
+**Developed by:** [@dzn](https://github.com/seu-usuario)  
+**Contact:** Discord `d.zn.`
